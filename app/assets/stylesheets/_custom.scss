@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+$fa-font-path: "@fortawesome/fontawesome-free/webfonts";
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/regular";
+@import "@fortawesome/fontawesome-free/scss/brands";
+@import "@fortawesome/fontawesome-free/scss/v4-shims";
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+.thread {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ececec;
+  overflow: hidden;
+
+  .forum-title {
+    font-weight: bold;
+  }
+
+  .meta {
+    margin-bottom: 10px;
+  }
+
+  .count {
+    margin-bottom: 10px;
+  }
+}
