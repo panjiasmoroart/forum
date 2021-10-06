@@ -1,4 +1,6 @@
 class ForumThreadsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @threads = ForumThread.order(id: :desc)
     # render plain: @threads.inspect 
@@ -16,7 +18,7 @@ class ForumThreadsController < ApplicationController
   def create
     # render plain: params.inspect
     @thread = ForumThread.new(resources_params)
-    @thread.user = User.first
+    @thread.user = current_user
     if @thread.save
       redirect_to root_path
     else

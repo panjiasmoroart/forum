@@ -11,6 +11,10 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   font-family: "Open Sans", sans-serif;
 }
 
+.text-logo-title {
+  color: #6c757d;
+}
+
 .thread {
   margin-bottom: 15px;
   border-bottom: 1px solid #ececec;
@@ -27,4 +31,9 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   .count {
     margin-bottom: 10px;
   }
+}
+
+// custom bootstrap styles
+.dropdown-menu {
+  left: -40px;
 }
