@@ -5,7 +5,7 @@ class ForumThread < ApplicationRecord
   belongs_to :user
   has_many :forum_posts, dependent: :destroy 
 
-  validates :title, presence: true, length: {maximum: 50} 
+  validates :title, presence: true, length: {maximum: 75} 
   validates :content, presence: true
 
   def sticky?

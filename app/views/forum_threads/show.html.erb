@@ -24,7 +24,7 @@
     <% end %>
 
     <% if @thread.forum_posts.any? %>
-      <% @thread.forum_posts.each do |p| %>
+      <% @posts.each do |p| %>
         <div class="thread">
           <div class="meta">
             <i class="far fa-calendar-plus"></i>
@@ -38,6 +38,12 @@
           </div>
         </div>
       <% end %>
+
+      <div class='pagination'>
+        <%= will_paginate @posts, list_classes: %w(pagination justify-content-start), previous_label: "Prev", 
+        next_label: "Next" %>
+      </div> 
+
     <% else %>
       <div>
         Jadilah yang pertama melakukan tanggapan
