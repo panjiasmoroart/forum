@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root "forum_threads#index"
 
-  resources :forum_threads, only: [:index, :show, :new, :create, :edit, :update] do  
+  resources :forum_threads, only: [:index, :show, :new, :create, :edit, :update, :destroy] do  
     resources :forum_posts, only: [:index, :create]
     put :pinit, on: :member
   end

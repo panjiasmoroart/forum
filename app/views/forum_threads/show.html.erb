@@ -14,9 +14,14 @@
       </div>
     </div>
 
-    <div class="action edit">
-      <%= link_to 'Edit', edit_forum_thread_path(@thread), class: 'btn btn-info mb-3' %>
-    </div>
+    <% if user_signed_in? && policy(@thread).edit? %>
+      <div class="action edit">
+        <%= link_to 'Edit', edit_forum_thread_path(@thread), class: 'btn btn-info mb-3' %>
+        <% if policy(@thread).destroy? %>       
+          <%= link_to 'Delete', forum_thread_path(@thread), method: :delete, data: {confirm: 'Yakin ingin menghapus thread'}, class: 'btn btn-danger mb-3' %>
+        <% end %>       
+      </div>
+    <% end %>
 
     <% if @thread.forum_posts.any? %>
       <% @thread.forum_posts.each do |p| %>

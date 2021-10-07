@@ -7,8 +7,9 @@ class ForumThreadsController < ApplicationController
   end
 
   def show
-    @thread = ForumThread.find(params[:id])
+    @thread = ForumThread.friendly.find(params[:id])
     @post = ForumPost.new
+    @user = User.all
   end
 
   def new
@@ -28,11 +29,13 @@ class ForumThreadsController < ApplicationController
   end 
 
   def edit
-    @thread = ForumThread.find(params[:id])
+    @thread = ForumThread.friendly.find(params[:id])
+    authorize @thread
   end
 
   def update
-    @thread = ForumThread.find(params[:id])
+    @thread = ForumThread.friendly.find(params[:id])
+    authorize @thread
     if @thread.update(resources_params)
       redirect_to forum_thread_path(@thread)
     else
@@ -40,8 +43,16 @@ class ForumThreadsController < ApplicationController
     end
   end
 
+  def destroy
+    @thread = ForumThread.friendly.find(params[:id]) 
+    authorize @thread
+
+    @thread.destroy 
+    redirect_to root_path, notice: 'Thread berhasil dihapus'
+  end
+
   def pinit 
-    @thread = ForumThread.find(params[:id])
+    @thread = ForumThread.friendly.find(params[:id])
     @thread.pinit!
     redirect_to root_path
   end

@@ -2,7 +2,7 @@ class ForumPostsController < ApplicationController
   before_action :authenticate_user!, only: [:create]  
 
   def index 
-    @thread = ForumThread.find(params[:forum_thread_id])
+    @thread = ForumThread.friendly.find(params[:forum_thread_id])
     if @thread.id
       redirect_to controller: 'forum_threads', action: 'index'
     end
@@ -10,7 +10,7 @@ class ForumPostsController < ApplicationController
 
   def create
     # render plain: params.inspect
-    @thread = ForumThread.find(params[:forum_thread_id])
+    @thread = ForumThread.friendly.find(params[:forum_thread_id])
     @post = ForumPost.new(resources_params)
     
     @post.forum_thread = @thread
