@@ -27,6 +27,19 @@ class ForumThreadsController < ApplicationController
     end
   end 
 
+  def edit
+    @thread = ForumThread.find(params[:id])
+  end
+
+  def update
+    @thread = ForumThread.find(params[:id])
+    if @thread.update(resources_params)
+      redirect_to forum_thread_path(@thread)
+    else
+      render 'edit'
+    end
+  end
+
   def pinit 
     @thread = ForumThread.find(params[:id])
     @thread.pinit!
