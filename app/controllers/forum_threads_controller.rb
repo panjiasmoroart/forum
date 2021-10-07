@@ -2,7 +2,7 @@ class ForumThreadsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @threads = ForumThread.order(id: :desc)
+    @threads = ForumThread.order(sticky_order: :asc).order(id: :desc)
     # render plain: @threads.inspect 
   end
 
@@ -25,8 +25,13 @@ class ForumThreadsController < ApplicationController
       #  puts @thread.errors.full_messages
        render 'new'
     end
-   
   end 
+
+  def pinit 
+    @thread = ForumThread.find(params[:id])
+    @thread.pinit!
+    redirect_to root_path
+  end
 
   private
 

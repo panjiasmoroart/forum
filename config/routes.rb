@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   resources :forum_threads, only: [:index, :show, :new, :create] do  
     resources :forum_posts, only: [:index, :create]
+    put :pinit, on: :member
   end
 end
